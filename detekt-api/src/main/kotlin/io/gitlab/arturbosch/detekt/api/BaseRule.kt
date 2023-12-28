@@ -54,8 +54,7 @@ abstract class BaseRule(
     /**
      * Basic mechanism to decide if a rule should run or not.
      *
-     * By default, any rule which is declared 'active' in the [Config]
-     * or not suppressed by a [Suppress] annotation on file level should run.
+     * By default, any rule not suppressed by a [Suppress] annotation on file level should run.
      */
     abstract fun visitCondition(root: KtFile): Boolean
 

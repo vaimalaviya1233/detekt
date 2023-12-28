@@ -334,7 +334,6 @@ public abstract interface annotation class io/gitlab/arturbosch/detekt/api/Requi
 
 public abstract class io/gitlab/arturbosch/detekt/api/Rule : io/gitlab/arturbosch/detekt/api/BaseRule {
 	public fun <init> (Lio/gitlab/arturbosch/detekt/api/Config;)V
-	public final fun getActive ()Z
 	public final fun getAliases ()Ljava/util/Set;
 	public final fun getAutoCorrect ()Z
 	public final fun getConfig ()Lio/gitlab/arturbosch/detekt/api/Config;

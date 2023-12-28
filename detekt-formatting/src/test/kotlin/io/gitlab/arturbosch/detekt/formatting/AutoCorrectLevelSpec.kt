@@ -2,6 +2,7 @@ package io.gitlab.arturbosch.detekt.formatting
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.Finding
+import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.RuleSet
 import io.gitlab.arturbosch.detekt.api.RuleSetProvider
 import io.gitlab.arturbosch.detekt.test.assertThat
@@ -41,22 +42,13 @@ class AutoCorrectLevelSpec {
         assertThat(findings).isNotEmpty()
         assertJThat(wasFormatted(file)).isFalse()
     }
-
-    @Test
-    fun `autoCorrect_ true but rule active false should not reformat the test file`() {
-        val config = yamlConfig("/autocorrect/autocorrect-true-rule-active-false.yml")
-
-        val (file, findings) = runRule(config)
-
-        assertThat(findings).isEmpty()
-        assertJThat(wasFormatted(file)).isFalse()
-    }
 }
 
 private fun runRule(config: Config): Pair<KtFile, List<Finding>> {
     val testFile = loadFile("configTests/fixed.kt")
     val ruleSet = loadRuleSet<FormattingProvider>()
     val rules = ruleSet.rules.map { (ruleId, provider) -> provider(config.subConfig(ruleSet.id).subConfig(ruleId)) }
+        .filter { (it as Rule).config.valueOrDefault("active", false) }
     rules.forEach { it.visitFile(testFile) }
     return testFile to rules.flatMap { it.findings }
 }
