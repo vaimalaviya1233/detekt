@@ -17,15 +17,15 @@ class CorrectableRulesFirstSpec {
     fun `runs rule with id 'NonCorrectable' last`() {
         var actualLastRuleId = ""
 
-        class First(config: Config) : Rule(config) {
-            override val issue = Issue("NonCorrectable", "")
+        class NonCorrectable(config: Config) : Rule(config) {
+            override val issue = Issue(javaClass.simpleName, "")
             override fun visitClass(klass: KtClass) {
                 actualLastRuleId = issue.id
             }
         }
 
-        class Last(config: Config) : Rule(config) {
-            override val issue = Issue("Correctable", "")
+        class Correctable(config: Config) : Rule(config) {
+            override val issue = Issue(javaClass.simpleName, "")
             override fun visitClass(klass: KtClass) {
                 actualLastRuleId = issue.id
             }
@@ -50,7 +50,7 @@ class CorrectableRulesFirstSpec {
             settings,
             listOf(object : RuleSetProvider {
                 override val ruleSetId: String = "Test"
-                override fun instance(config: Config) = RuleSet(ruleSetId, listOf(Last(config), First(config)))
+                override fun instance(config: Config) = RuleSet(ruleSetId, listOf(Correctable(config), NonCorrectable(config)))
             }),
             emptyList()
         )
