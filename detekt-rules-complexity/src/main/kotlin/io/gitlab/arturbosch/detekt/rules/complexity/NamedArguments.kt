@@ -33,7 +33,7 @@ import org.jetbrains.kotlin.resolve.calls.util.getResolvedCall
 class NamedArguments(config: Config = Config.empty) : Rule(config) {
 
     override val issue = Issue(
-        "NamedArguments",
+        javaClass.simpleName,
         "Named arguments are required for function calls with many arguments.",
     )
 

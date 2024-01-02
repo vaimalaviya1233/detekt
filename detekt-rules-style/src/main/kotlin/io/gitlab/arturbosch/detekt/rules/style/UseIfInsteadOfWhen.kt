@@ -29,7 +29,7 @@ import org.jetbrains.kotlin.psi.KtWhenExpression
 class UseIfInsteadOfWhen(config: Config = Config.empty) : Rule(config) {
 
     override val issue = Issue(
-        "UseIfInsteadOfWhen",
+        javaClass.simpleName,
         "Binary expressions are better expressed using an `if` expression than a `when` expression.",
     )
 

@@ -43,7 +43,7 @@ import org.jetbrains.kotlin.types.KotlinType
 class ReturnFromFinally(config: Config = Config.empty) : Rule(config) {
 
     override val issue = Issue(
-        "ReturnFromFinally",
+        javaClass.simpleName,
         "Do not return within a finally statement. This can discard exceptions.",
     )
 

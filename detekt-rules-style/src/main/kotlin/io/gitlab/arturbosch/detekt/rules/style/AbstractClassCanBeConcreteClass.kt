@@ -53,7 +53,7 @@ class AbstractClassCanBeConcreteClass(config: Config = Config.empty) : Rule(conf
     private val noAbstractMember = "An abstract class without an abstract member can be refactored to a concrete class."
 
     override val issue = Issue(
-        "AbstractClassCanBeConcreteClass",
+        javaClass.simpleName,
         "An abstract class is unnecessary. May be refactored to a concrete class.",
     )
 

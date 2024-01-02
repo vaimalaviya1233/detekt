@@ -29,7 +29,7 @@ import org.jetbrains.kotlin.types.isNullable
 class UnnecessaryNotNullCheck(config: Config = Config.empty) : Rule(config) {
 
     override val issue = Issue(
-        "UnnecessaryNotNullCheck",
+        javaClass.simpleName,
         "Remove unnecessary not-null checks on non-null types.",
     )
 

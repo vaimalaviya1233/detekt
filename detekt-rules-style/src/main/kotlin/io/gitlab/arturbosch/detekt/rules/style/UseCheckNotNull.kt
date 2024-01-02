@@ -26,7 +26,7 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 @ActiveByDefault(since = "1.21.0")
 class UseCheckNotNull(config: Config = Config.empty) : Rule(config) {
     override val issue = Issue(
-        "UseCheckNotNull",
+        javaClass.simpleName,
         "Use checkNotNull() instead of check() for checking not-null.",
     )
 
