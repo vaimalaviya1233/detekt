@@ -6,7 +6,7 @@ import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.RuleSet
 import io.gitlab.arturbosch.detekt.api.RuleSetProvider
-import io.gitlab.arturbosch.detekt.test.yamlConfig
+import io.gitlab.arturbosch.detekt.test.yamlConfigFromContent
 import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.kotlin.psi.KtClass
 import org.junit.jupiter.api.Test
@@ -32,7 +32,20 @@ class CorrectableRulesFirstSpec {
         }
 
         val testFile = path.resolve("Test.kt")
-        val settings = createProcessingSettings(testFile, yamlConfig("configs/one-correctable-rule.yml"))
+        val settings = createProcessingSettings(
+            testFile,
+            yamlConfigFromContent(
+                """
+                    Test:
+                      NonCorrectable:
+                        active: true
+                        autoCorrect: false
+                      Correctable:
+                        active: true
+                        autoCorrect: true
+                """.trimIndent()
+            )
+        )
         val detector = Analyzer(
             settings,
             listOf(object : RuleSetProvider {
