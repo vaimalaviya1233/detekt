@@ -45,13 +45,7 @@ import org.jetbrains.kotlin.psi.psiUtil.isPublic
  * </compliant>
  *
  */
-class KDocReferencesNonPublicProperty(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "KDoc comments should not refer to non-public properties.",
-    )
-
+class KDocReferencesNonPublicProperty(config: Config = Config.empty) : Rule(config, "KDoc comments should not refer to non-public properties.") {
     private val publicPropertiesByClass = mutableMapOf<KtClass, MutableSet<KtNamedDeclaration>>()
     private val privatePropertiesByClass = mutableMapOf<KtClass, MutableSet<KtNamedDeclaration>>()
 

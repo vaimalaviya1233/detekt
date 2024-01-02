@@ -18,13 +18,7 @@ import org.jetbrains.kotlin.psi.psiUtil.isPrivate
  * Reports constructor parameter names that do not follow the specified naming convention.
  */
 @ActiveByDefault(since = "1.0.0")
-class ConstructorParameterNaming(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Constructor parameter names should follow the naming convention set in the projects configuration.",
-    )
-
+class ConstructorParameterNaming(config: Config = Config.empty) : Rule(config, "Constructor parameter names should follow the naming convention set in the projects configuration.") {
     @Configuration("naming pattern")
     private val parameterPattern: Regex by config("[a-z][A-Za-z0-9]*") { it.toRegex() }
 

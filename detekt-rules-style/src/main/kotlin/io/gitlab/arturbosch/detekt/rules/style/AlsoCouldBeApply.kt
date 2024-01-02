@@ -35,13 +35,7 @@ import org.jetbrains.kotlin.psi.KtQualifiedExpression
  * }
  * </compliant>
  */
-class AlsoCouldBeApply(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "When an `also` block contains only `it`-started expressions, simplify it to the `apply` block.",
-    )
-
+class AlsoCouldBeApply(config: Config = Config.empty) : Rule(config, "When an `also` block contains only `it`-started expressions, simplify it to the `apply` block.") {
     override fun visitCallExpression(expression: KtCallExpression) {
         super.visitCallExpression(expression)
 

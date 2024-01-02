@@ -26,13 +26,7 @@ import org.jetbrains.kotlin.types.isNullable
  * </compliant>
  */
 @RequiresTypeResolution
-class UnnecessaryNotNullCheck(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Remove unnecessary not-null checks on non-null types.",
-    )
-
+class UnnecessaryNotNullCheck(config: Config = Config.empty) : Rule(config, "Remove unnecessary not-null checks on non-null types.") {
     override fun visitCallExpression(expression: KtCallExpression) {
         super.visitCallExpression(expression)
 

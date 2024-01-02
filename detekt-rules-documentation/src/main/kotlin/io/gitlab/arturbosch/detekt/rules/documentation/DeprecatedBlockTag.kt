@@ -36,13 +36,8 @@ import org.jetbrains.kotlin.psi.KtDeclaration
  * }
  * </compliant>
  */
-class DeprecatedBlockTag(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Do not use the `@deprecated` block tag, which is not supported by KDoc. " +
-            "Use the `@Deprecated` annotation instead.",
-    )
-
+class DeprecatedBlockTag(config: Config = Config.empty) : Rule(config, "Do not use the `@deprecated` block tag, which is not supported by KDoc. " +
+            "Use the `@Deprecated` annotation instead.") {
     override fun visitDeclaration(dcl: KtDeclaration) {
         super.visitDeclaration(dcl)
         dcl.docComment?.getAllSections()?.forEach { section ->

@@ -49,12 +49,7 @@ import org.jetbrains.kotlin.utils.addIfNotNull
  * </compliant>
  */
 @RequiresTypeResolution
-class PropertyUsedBeforeDeclaration(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Properties before declaration should not be used.",
-    )
-
+class PropertyUsedBeforeDeclaration(config: Config = Config.empty) : Rule(config, "Properties before declaration should not be used.") {
     override fun visitClassOrObject(classOrObject: KtClassOrObject) {
         super.visitClassOrObject(classOrObject)
 

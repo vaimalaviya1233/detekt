@@ -38,13 +38,7 @@ import org.jetbrains.kotlin.psi.psiUtil.collectDescendantsOfType
 @ActiveByDefault(since = "1.0.0")
 class ComplexCondition(
     config: Config = Config.empty
-) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Complex conditions should be simplified and extracted into well-named methods if necessary.",
-    )
-
+) : Rule(config, "Complex conditions should be simplified and extracted into well-named methods if necessary.") {
     @Configuration("Maximum allowed number of conditions.")
     private val allowedConditions: Int by config(defaultValue = 3)
 

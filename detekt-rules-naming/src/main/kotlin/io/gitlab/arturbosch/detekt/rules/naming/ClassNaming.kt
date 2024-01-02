@@ -15,13 +15,7 @@ import org.jetbrains.kotlin.psi.KtClassOrObject
  * Reports class or object names that do not follow the specified naming convention.
  */
 @ActiveByDefault(since = "1.0.0")
-class ClassNaming(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "A class or object name should fit the naming pattern defined in the projects configuration.",
-    )
-
+class ClassNaming(config: Config = Config.empty) : Rule(config, "A class or object name should fit the naming pattern defined in the projects configuration.") {
     override val defaultRuleIdAliases: Set<String> = setOf("ClassName")
 
     @Configuration("naming pattern")

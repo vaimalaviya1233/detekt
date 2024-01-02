@@ -50,13 +50,8 @@ import org.jetbrains.kotlin.psi.psiUtil.siblings
  * do println("Hello, world") while (true)
  * </compliant>
  */
-class MandatoryBracesLoops(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "A multi-line loop was found that does not have braces. " +
-            "These should be added to improve readability.",
-    )
-
+class MandatoryBracesLoops(config: Config = Config.empty) : Rule(config, "A multi-line loop was found that does not have braces. " +
+            "These should be added to improve readability.") {
     override fun visitForExpression(expression: KtForExpression) {
         checkForBraces(expression)
         super.visitForExpression(expression)

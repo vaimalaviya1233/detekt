@@ -24,12 +24,7 @@ import org.jetbrains.kotlin.psi.KtCallExpression
  */
 @RequiresTypeResolution
 @ActiveByDefault(since = "1.21.0")
-class UseRequireNotNull(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Use requireNotNull() instead of require() for checking not-null.",
-    )
-
+class UseRequireNotNull(config: Config = Config.empty) : Rule(config, "Use requireNotNull() instead of require() for checking not-null.") {
     override fun visitCallExpression(expression: KtCallExpression) {
         super.visitCallExpression(expression)
         if (expression.isCallingWithNonNullCheckArgument(requireFunctionFqName, bindingContext)) {

@@ -27,16 +27,10 @@ import org.jetbrains.kotlin.psi.psiUtil.isPrivate
  */
 class ComplexInterface(
     config: Config = Config.empty,
-) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "An interface contains too many functions and properties. " +
+) : Rule(config, "An interface contains too many functions and properties. " +
             "Large classes tend to handle many things at once. " +
             "An interface should have one responsibility. " +
-            "Split up large interfaces into smaller ones that are easier to understand.",
-    )
-
+            "Split up large interfaces into smaller ones that are easier to understand.") {
     @Configuration("The amount of allowed definitions in an interface.")
     private val allowedDefinitions: Int by config(defaultValue = 10)
 

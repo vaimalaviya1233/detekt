@@ -24,12 +24,7 @@ import kotlin.reflect.KClass
  */
 @ActiveByDefault("1.22.0")
 @RequiresTypeResolution
-class ViolatesTypeResolutionRequirements(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "`@RequiresTypeResolution` should be used if and only if the property `bindingContext` is used.",
-    )
-
+class ViolatesTypeResolutionRequirements(config: Config = Config.empty) : Rule(config, "`@RequiresTypeResolution` should be used if and only if the property `bindingContext` is used.") {
     private val klasses: MutableList<KtClass> = mutableListOf()
     private var usesBindingContext: Boolean = false
 

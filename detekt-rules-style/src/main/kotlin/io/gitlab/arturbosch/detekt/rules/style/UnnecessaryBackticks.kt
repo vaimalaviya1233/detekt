@@ -25,12 +25,7 @@ import org.jetbrains.kotlin.psi.psiUtil.isIdentifier
  * class HelloWorld
  * </compliant>
  */
-class UnnecessaryBackticks(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Backticks are unnecessary.",
-    )
-
+class UnnecessaryBackticks(config: Config = Config.empty) : Rule(config, "Backticks are unnecessary.") {
     override fun visitKtElement(element: KtElement) {
         element.allChildren
             .filter { it.node.elementType == KtTokens.IDENTIFIER && it.hasUnnecessaryBackticks() }

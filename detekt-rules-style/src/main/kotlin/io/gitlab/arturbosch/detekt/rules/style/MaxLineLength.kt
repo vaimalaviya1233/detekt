@@ -26,13 +26,7 @@ import org.jetbrains.kotlin.psi.psiUtil.getParentOfType
  * in the codebase will help make the code more uniform.
  */
 @ActiveByDefault(since = "1.0.0")
-class MaxLineLength(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Line detected, which is longer than the defined maximum line length in the code style.",
-    )
-
+class MaxLineLength(config: Config = Config.empty) : Rule(config, "Line detected, which is longer than the defined maximum line length in the code style.") {
     @Suppress("MemberNameEqualsClassName")
     @Configuration("maximum line length")
     private val maxLineLength: Int by config(DEFAULT_IDEA_LINE_LENGTH)

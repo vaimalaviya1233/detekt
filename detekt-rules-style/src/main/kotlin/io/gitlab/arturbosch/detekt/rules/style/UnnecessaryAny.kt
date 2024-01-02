@@ -44,12 +44,7 @@ import org.jetbrains.kotlin.types.typeUtil.isSubtypeOf
  * </compliant>
  */
 @RequiresTypeResolution
-class UnnecessaryAny(config: Config = Config.empty) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "The `any {  }` usage is unnecessary.",
-    )
-
+class UnnecessaryAny(config: Config = Config.empty) : Rule(config, "The `any {  }` usage is unnecessary.") {
     override fun visitCallExpression(expression: KtCallExpression) {
         super.visitCallExpression(expression)
 

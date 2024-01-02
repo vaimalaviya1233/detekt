@@ -21,13 +21,7 @@ import org.jetbrains.kotlin.psi.psiUtil.anyDescendantOfType
  * }
  * </noncompliant>
  */
-class ThrowingExceptionInMain(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "The main method should not throw an exception.",
-    )
-
+class ThrowingExceptionInMain(config: Config = Config.empty) : Rule(config, "The main method should not throw an exception.") {
     override fun visitNamedFunction(function: KtNamedFunction) {
         if (function.isMainFunction() && containsThrowExpression(function)) {
             report(CodeSmell(issue, Entity.atName(function), issue.description))

@@ -25,14 +25,8 @@ import org.jetbrains.kotlin.psi.KtNamedFunction
  * }
  * </noncompliant>
  */
-class DataClassContainsFunctions(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Data classes should mainly be used to store data and should not have any extra functions " +
-            "(Compiler will automatically generate equals, toString and hashCode functions).",
-    )
-
+class DataClassContainsFunctions(config: Config = Config.empty) : Rule(config, "Data classes should mainly be used to store data and should not have any extra functions " +
+            "(Compiler will automatically generate equals, toString and hashCode functions).") {
     @Configuration("allowed conversion function names")
     private val conversionFunctionPrefix: List<String> by config(listOf("to"))
 

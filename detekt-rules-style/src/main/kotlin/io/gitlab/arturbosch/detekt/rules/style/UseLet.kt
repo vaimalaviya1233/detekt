@@ -30,12 +30,7 @@ import org.jetbrains.kotlin.psi.KtPsiUtil
  */
 class UseLet(
     config: Config = Config.empty
-) : Rule(config) {
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Use `?.let {}` instead of if/else with a null block when checking for nullable values",
-    )
-
+) : Rule(config, "Use `?.let {}` instead of if/else with a null block when checking for nullable values") {
     private fun isExpressionNull(branch: KtExpression?): Boolean {
         val statement = when (branch) {
             is KtBlockExpression -> if (branch.statements.size == 1) branch.statements.first() else null

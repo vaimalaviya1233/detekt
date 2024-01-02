@@ -25,13 +25,7 @@ import org.jetbrains.kotlin.psi.psiUtil.forEachDescendantOfType
  * </noncompliant>
  */
 @ActiveByDefault(since = "1.16.0")
-class ThrowingExceptionFromFinally(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Do not throw an exception within a finally statement. This can discard exceptions and is confusing.",
-    )
-
+class ThrowingExceptionFromFinally(config: Config = Config.empty) : Rule(config, "Do not throw an exception within a finally statement. This can discard exceptions and is confusing.") {
     override fun visitFinallySection(finallySection: KtFinallySection) {
         finallySection.finalExpression.forEachDescendantOfType<KtThrowExpression> {
             report(CodeSmell(issue, Entity.from(it), issue.description))

@@ -48,13 +48,7 @@ import org.jetbrains.kotlin.types.typeUtil.isInterface
  */
 @ActiveByDefault(since = "1.2.0")
 @RequiresTypeResolution
-class AbstractClassCanBeConcreteClass(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "An abstract class is unnecessary. May be refactored to a concrete class.",
-    )
-
+class AbstractClassCanBeConcreteClass(config: Config = Config.empty) : Rule(config, "An abstract class is unnecessary. May be refactored to a concrete class.") {
     private val noAbstractMember = "An abstract class without an abstract member can be refactored to a concrete class."
 
     @Configuration("Allows you to provide a list of annotations that disable this check.")

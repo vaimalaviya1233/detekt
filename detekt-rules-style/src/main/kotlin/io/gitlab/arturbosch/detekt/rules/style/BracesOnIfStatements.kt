@@ -143,13 +143,7 @@ import org.jetbrains.kotlin.psi.KtIfExpression
  *    f
  * </compliant>
  */
-class BracesOnIfStatements(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Braces do not comply with the specified policy",
-    )
-
+class BracesOnIfStatements(config: Config = Config.empty) : Rule(config, "Braces do not comply with the specified policy") {
     @Configuration("single-line braces policy")
     private val singleLine: BracePolicy by config("never") { BracePolicy.getValue(it) }
 

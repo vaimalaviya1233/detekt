@@ -14,13 +14,7 @@ import org.jetbrains.kotlin.psi.KtParameter
 /**
  * Reports lambda parameter names that do not follow the specified naming convention.
  */
-class LambdaParameterNaming(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Lambda parameter names should follow the naming convention set in the projects configuration.",
-    )
-
+class LambdaParameterNaming(config: Config = Config.empty) : Rule(config, "Lambda parameter names should follow the naming convention set in the projects configuration.") {
     @Configuration("naming pattern")
     private val parameterPattern: Regex by config("[a-z][A-Za-z0-9]*|_", String::toRegex)
 

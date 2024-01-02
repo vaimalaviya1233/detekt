@@ -43,14 +43,8 @@ import org.jetbrains.kotlin.resolve.BindingContext
  */
 @RequiresTypeResolution
 @ActiveByDefault(since = "1.21.0")
-class DoubleMutabilityForCollection(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Using var with mutable collections or values leads to double mutability. " +
-            "Consider using val or immutable collection or value types.",
-    )
-
+class DoubleMutabilityForCollection(config: Config = Config.empty) : Rule(config, "Using var with mutable collections or values leads to double mutability. " +
+            "Consider using val or immutable collection or value types.") {
     override val defaultRuleIdAliases: Set<String> = setOf("DoubleMutability")
 
     @Configuration("Define a list of mutable types to trigger on when defined with `var`.")

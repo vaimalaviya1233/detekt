@@ -31,13 +31,7 @@ import org.jetbrains.kotlin.psi.KtBinaryExpression
  * </compliant>
  */
 @ActiveByDefault(since = "1.2.0")
-class InvalidRange(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "If a for loops condition is false before the first iteration, the loop will never get executed.",
-    )
-
+class InvalidRange(config: Config = Config.empty) : Rule(config, "If a for loops condition is false before the first iteration, the loop will never get executed.") {
     private val minimumSize = 3
 
     override fun visitBinaryExpression(expression: KtBinaryExpression) {

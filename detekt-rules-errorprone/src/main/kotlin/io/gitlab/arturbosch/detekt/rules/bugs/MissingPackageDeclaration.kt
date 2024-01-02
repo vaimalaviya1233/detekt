@@ -11,13 +11,7 @@ import org.jetbrains.kotlin.psi.KtPackageDirective
 /**
  * Reports when the package declaration is missing.
  */
-class MissingPackageDeclaration(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Kotlin source files should define a package.",
-    )
-
+class MissingPackageDeclaration(config: Config = Config.empty) : Rule(config, "Kotlin source files should define a package.") {
     private var packageDeclaration: KtPackageDirective? = null
 
     override fun visitPackageDirective(directive: KtPackageDirective) {

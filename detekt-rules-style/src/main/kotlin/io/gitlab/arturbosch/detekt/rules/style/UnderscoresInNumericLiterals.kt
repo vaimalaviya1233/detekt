@@ -29,14 +29,8 @@ import java.util.Locale
  * const val DEFAULT_AMOUNT = 1_000_000
  * </compliant>
  */
-class UnderscoresInNumericLiterals(config: Config = Config.empty) : Rule(config) {
-
-    override val issue = Issue(
-        javaClass.simpleName,
-        "Report missing or invalid underscores in base 10 numbers. Numeric literals " +
-            "should be underscore separated to increase readability.",
-    )
-
+class UnderscoresInNumericLiterals(config: Config = Config.empty) : Rule(config, "Report missing or invalid underscores in base 10 numbers. Numeric literals " +
+            "should be underscore separated to increase readability.") {
     @Configuration("Length under which base 10 numbers are not required to have underscores")
     @Deprecated("Use `acceptableLength` instead")
     private val acceptableDecimalLength: Int by config(5) { it - 1 }
