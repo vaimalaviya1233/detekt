@@ -50,7 +50,7 @@ class UnusedPrivateMember(config: Config = Config.empty) : Rule(config) {
 
     override val defaultRuleIdAliases: Set<String> = setOf("UNUSED_VARIABLE", "UNUSED_PARAMETER", "unused")
 
-    override val issue: Issue = Issue(
+    override val issue = Issue(
         "UnusedPrivateMember",
         "Private function is unused and should be removed.",
     )

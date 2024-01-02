@@ -51,11 +51,10 @@ class AbstractClassCanBeInterface(config: Config = Config.empty) : Rule(config) 
 
     private val noConcreteMember = "An abstract class without a concrete member can be refactored to an interface."
 
-    override val issue =
-        Issue(
-            "AbstractClassCanBeInterface",
-            "An abstract class is unnecessary. May be refactored to an interface.",
-        )
+    override val issue = Issue(
+        "AbstractClassCanBeInterface",
+        "An abstract class is unnecessary. May be refactored to an interface.",
+    )
 
     override fun visitClass(klass: KtClass) {
         klass.check()
@@ -82,8 +81,10 @@ class AbstractClassCanBeInterface(config: Config = Config.empty) : Rule(config) 
         when {
             abstractMembers.isEmpty() && !hasInheritedMember(true) ->
                 Unit
+
             abstractMembers.any { it.isInternal() || it.isProtected() } || hasConstructorParameter() ->
                 Unit
+
             concreteMembers.isEmpty() && !hasInheritedMember(false) ->
                 report(CodeSmell(issue, Entity.from(nameIdentifier), noConcreteMember))
         }

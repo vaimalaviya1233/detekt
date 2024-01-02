@@ -20,7 +20,7 @@ import org.jetbrains.kotlin.psi.KtClassOrObject
 @ActiveByDefault(since = "1.2.0")
 class UnnecessaryInheritance(config: Config = Config.empty) : Rule(config) {
 
-    override val issue: Issue = Issue(
+    override val issue = Issue(
         javaClass.simpleName,
         "The extended super type is unnecessary.",
     )
