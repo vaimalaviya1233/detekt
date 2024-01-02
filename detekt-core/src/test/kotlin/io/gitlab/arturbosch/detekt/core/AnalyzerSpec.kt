@@ -243,8 +243,7 @@ private class CustomRuleSetProvider : RuleSetProvider {
     )
 }
 
-private class MaxLineLength(config: Config) : Rule(config) {
-    override val issue = Issue(this::class.java.simpleName, "TestDescription")
+private class MaxLineLength(config: Config) : Rule(config, "TestDescription") {
     private val lengthThreshold: Int = valueOrDefault("maxLineLength", 10)
     override fun visitKtFile(file: KtFile) {
         super.visitKtFile(file)
@@ -257,8 +256,7 @@ private class MaxLineLength(config: Config) : Rule(config) {
 }
 
 @RequiresTypeResolution
-private class RequiresTypeResolutionMaxLineLength(config: Config) : Rule(config) {
-    override val issue = Issue(this::class.java.simpleName, "TestDescription")
+private class RequiresTypeResolutionMaxLineLength(config: Config) : Rule(config, "TestDescription") {
     private val lengthThreshold: Int = valueOrDefault("maxLineLength", 10)
     override fun visitKtFile(file: KtFile) {
         super.visitKtFile(file)
@@ -270,15 +268,13 @@ private class RequiresTypeResolutionMaxLineLength(config: Config) : Rule(config)
     }
 }
 
-private class FaultyRule(config: Config) : Rule(config) {
-    override val issue = Issue(this::class.java.simpleName, "")
+private class FaultyRule(config: Config) : Rule(config, "") {
     override fun visitKtFile(file: KtFile) {
         throw object : IllegalStateException("Deliberately triggered error.") {}
     }
 }
 
-private class FaultyRuleNoStackTrace(config: Config) : Rule(config) {
-    override val issue = Issue(this::class.java.simpleName, "")
+private class FaultyRuleNoStackTrace(config: Config) : Rule(config, "") {
     override fun visitKtFile(file: KtFile) {
         throw object : IllegalStateException("Deliberately triggered error without stack trace.") {
             init {
