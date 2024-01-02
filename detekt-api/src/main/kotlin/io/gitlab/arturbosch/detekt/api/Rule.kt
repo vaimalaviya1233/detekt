@@ -18,13 +18,14 @@ import org.jetbrains.kotlin.psi.KtFile
  */
 abstract class Rule(
     override val ruleSetConfig: Config,
+    description: String,
     ruleContext: Context = DefaultContext()
 ) : BaseRule(ruleContext), ConfigAware {
 
     /**
      * A rule is motivated to point out a specific issue in the code base.
      */
-    abstract val issue: Issue
+    val issue: Issue = Issue(javaClass.simpleName, description)
 
     /**
      * An id this rule is identified with.
